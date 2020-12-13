@@ -4,9 +4,12 @@ version = "0.1.0"
 authors = ["lenovo"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[build-dependencies] # <-- We added this and everything after!
+lalrpop = "0.19.1"
 [dependencies]
 async-std = {version = "1.8.0", features = ["attributes"]}
+combine = "4.4.0"
 futures = "0.3.8"
-nom = "6.0.1"
+

@@ -1,14 +1,16 @@
-use nom::{IResult, bytes::complete::tag, character::{complete::alphanumeric1, is_alphabetic}, sequence::{pair, tuple}};
+use std::error::Error;
 
+use combine::parser;
 ///KeyWord table
+type UResult<U, V> = std::result::Result<(U, V), Box<dyn Error + 'static>>;
+
 const kwtb: [&str; 32] = ["int", "char", "double", "float", "short", "long", "auto", "break",
                         "case", "const", "continue", "default", "do", "else", "enum", "extern",
                         "for", "goto", "if", "register", "return", "signed", "sizeof", "static",
                         "struct", "switch", "typedef", "unsigned", "union", "void", "volatile", "while"
 ];
 
-
-pub async fn isKeyWord(s: &str) -> bool {
+pub fn isKeyWord(s: &str) -> bool {
      for item in kwtb.into_iter() {
           if *item == s {
                return true
@@ -17,31 +19,40 @@ pub async fn isKeyWord(s: &str) -> bool {
      false
 }
 
-fn match_func(s: &str) -> IResult<&str, &str> {
-    // pair(alphanumeric1, tag("("))
-    todo!()
-}
+pub fn isIdentifier(c: char) -> bool{
+     if c >= 'a' && c <='z' 
+          || c >= 'A' && c <= 'Z' 
+          || c >= '0' && c <= '9'
+          || c == '_' {
+               return true;
+     }
+     false
+} 
 
-
-pub async fn recongnize(s: &str) -> Option<(usize, usize)>{
-    
-    if let Ok((rest, matched)) = match_func(s) {
-
-    }
-    
+pub fn recognize(s: &str) {
+     let mut ops: usize = 0;
+     let mut opnds: usize = 0;
+     
+     let mut container = String::new();
+     let cs: Vec<char> = s.chars().collect();
      todo!()
 }
+
+
+
+
 
 
 #[cfg(test)]
 mod test {
      use super::*;
-     #[async_std::test]
-     async fn test() {
-          assert_eq!(true, isKeyWord("int").await)
+     #[test]
+     fn test() {
+          assert_eq!(true, isKeyWord("int"))
      }
      #[async_std::test]
      async fn test2() {
-          assert_eq!(false, isKeyWord("tin").await);
+          //assert_eq!(false, isKeyWord("tin").await);
+          
      }
 }

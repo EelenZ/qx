@@ -78,6 +78,15 @@ impl Parser {
         //println!("{:#?}", cdg);
         Ok(splitedlines)
     }
+
+    pub async fn format(cdg: & mut Vec<String>) -> Result<Vec<String>> {
+        let formatlines: Vec<String> = cdg.into_iter().map(|line|-> Vec<&str>{
+            line.split(' ').collect()
+        }).map(|items|-> String {
+            items.join("")
+        }).collect();
+        Ok(formatlines)
+    }
 }
 
 #[cfg(test)]
@@ -104,7 +113,7 @@ mod test {
             "s2n(TLSEXT_TYPE_renegotiate,ret);".to_string(),
             "0".to_string(),
         ];
-        let cdg = Parser::split(&mut cdg).await.unwrap();
+        let cdg = Parser::format(&mut cdg).await.unwrap();
         println!("{:?}", cdg);
     }
 }
