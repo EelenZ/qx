@@ -4,7 +4,7 @@ use async_std::stream::StreamExt;
 use std::{sync::Mutex, collections::HashMap};
 
 use crate::count::Counter;
-use crate::matric::*;
+use crate::metric::*;
 
 type Result<T> = std::result::Result<T, Box<dyn Error + 'static>>;
 

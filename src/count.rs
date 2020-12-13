@@ -1,5 +1,5 @@
 use std::{sync::Mutex, collections::HashMap};
-use crate::matric::{*};
+use crate::metric::{*};
 use crate::util::{isKeyWord};
 
 

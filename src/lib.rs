@@ -1,7 +1,7 @@
 mod util;
 mod parse;
 mod count;
-mod matric;
+mod metric;
 #[cfg(test)]
 mod tests {
     #[test]
