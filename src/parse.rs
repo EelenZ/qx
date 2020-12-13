@@ -18,11 +18,11 @@ pub struct CDG {
 impl CDG {
 
     pub fn new(metadata: HashMap<&str, usize>, filename: String, label: bool)-> Self{
-        let mut metircs = Metrics::new(metadata);
+        let mut metrics = Metrics::new(metadata);
         Self {
             filename,
             label,
-            metrics:metircs,
+            metrics,
         }
     }
 
