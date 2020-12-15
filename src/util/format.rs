@@ -13,18 +13,23 @@ type Result<T> = std::result::Result<T, Box<dyn Error + 'static>>;
 pub async fn read_project(path: PathBuf) -> Result<()> {
     let mut project_root = read_dir(path).await?;
     let mut dir_list: Vec<PathBuf> = Vec::new();
-    let mut rs_list: Vec<PathBuf> = Vec::new();
+    let mut file_list: Vec<PathBuf> = Vec::new();
     while let Some(res) = project_root.next().await {
         let path = res?.path();
         if path.is_dir().await {
-            dir_list.push(path)
+            dir_list.push(path);
         }
         else if path.ends_with(".rs"){
-            rs_list.push(path)
+            file_list.push(path);
         }
     }
     
     Ok(())
+}
+
+pub async fn list_file(path: PathBuf, dir_list: &mut Vec<PathBuf>, file_list: &mut Vec<PathBuf>) {
+    
+    todo!()
 }
 
 pub async fn format_code(path: PathBuf) -> Result<()>{
