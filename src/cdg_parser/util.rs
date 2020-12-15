@@ -1,6 +1,5 @@
 use std::error::Error;
 
-use combine::parser;
 //KeyWord table
 const kwtb: [&str; 32] = ["int", "char", "double", "float", "short", "long", "auto", "break",
                         "case", "const", "continue", "default", "do", "else", "enum", "extern",
@@ -41,13 +40,17 @@ pub fn recognize(s: &str) -> Option<(usize, usize)>{
           }
           else {
                ops += 1;
-               if !isKeyWord(container.as_str()) {
+               if !container.is_empty() && !isKeyWord(container.as_str()) {
                     opnds += 1;
                }
                container.clear();
           }
+          i += 1;
      }
-     todo!()
+     if !container.is_empty() && !isKeyWord(container.as_str()) {
+          opnds += 1;
+     }
+     Some((ops, opnds))
 }
 
 
@@ -62,9 +65,10 @@ mod test {
      fn test() {
           assert_eq!(true, isKeyWord("int"))
      }
-     #[async_std::test]
-     async fn test2() {
-          //assert_eq!(false, isKeyWord("tin").await);
+     #[test]
+    fn test2() {
+         let s = "s2n(TLSEXT_TYPE_status_request,ret);";
+        println!("{:?}", recognize(s));  
           
      }
 }

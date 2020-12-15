@@ -3,8 +3,8 @@ use async_std::{self, fs::File, fs::read_dir, io::{BufReader, prelude::BufReadEx
 use async_std::stream::StreamExt;
 use std::{sync::Mutex, collections::HashMap};
 
-use crate::count::Counter;
-use crate::metric::*;
+use crate::cdg_parser::count::Counter;
+use crate::cdg_parser::metric::*;
 
 type Result<T> = std::result::Result<T, Box<dyn Error + 'static>>;
 

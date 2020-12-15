@@ -1,6 +1,6 @@
 use std::{sync::Mutex, collections::HashMap};
-use crate::metric::{*};
-use crate::util::{isKeyWord};
+use crate::cdg_parser::metric::{*};
+use crate::cdg_parser::util::{isKeyWord};
 
 
 pub struct Counter{

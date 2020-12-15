@@ -1,7 +1,5 @@
+mod cdg_parser;
 mod util;
-mod parse;
-mod count;
-mod metric;
 #[cfg(test)]
 mod tests {
     #[test]
